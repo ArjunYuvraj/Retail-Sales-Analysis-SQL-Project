@@ -54,61 +54,25 @@ CREATE TABLE sales_transaction
 - **Null Value Check**: Check for any null values in the dataset and delete records with missing data.
 
 ```sql
-select
-	count(*) as total_rows,   
-	count(distinct(transaction_id)) as total_transactions,
-	count(distinct(category)) as total_categories 	
-from sales_transactions;
+SELECT COUNT(*) FROM sales_transactions;
+SELECT COUNT(DISTINCT customer_id) FROM sales_transactions;
+SELECT DISTINCT category FROM sales_transactions;
 
-SELECT *
-FROM sales_transactions
-WHERE line_item_id IS NULL
-   OR transaction_id IS NULL OR sale_date IS NULL
-   OR customer_id IS NULL OR loyalty_member IS NULL
-   OR product_id IS NULL OR product_name IS NULL
-   OR category IS NULL OR brand IS NULL
-   OR unit_price IS NULL OR quantity IS NULL
-   OR line_total IS NULL OR discount_applied IS NULL
-   OR net_amount IS NULL OR payment_method IS NULL
-   OR cashier_id IS NULL;
+SELECT * FROM sales_transactions
+WHERE line_item_id IS NULL OR transaction_id IS NULL OR sale_date IS NULL
+   OR customer_id IS NULL OR loyalty_member IS NULL OR product_name IS NULL
+   OR product_id IS NULL OR category IS NULL OR brand IS NULL
+   OR unit_price IS NULL OR quantity IS NULL OR cashier_id IS NULL;
+   OR line_total IS NULL OR discount_applied IS NULL OR payment_method IS NULL
+   OR net_amount IS NULL 
 
-
-delete from sales_transactions
-WHERE line_item_id IS NULL
-   OR transaction_id IS NULL OR sale_date IS NULL
-   OR customer_id IS NULL OR loyalty_member IS NULL
-   OR product_id IS NULL OR product_name IS NULL
-   OR category IS NULL OR brand IS NULL
-   OR unit_price IS NULL OR quantity IS NULL
-   OR line_total IS NULL OR discount_applied IS NULL
-   OR net_amount IS NULL OR payment_method IS NULL
-   OR cashier_id IS NULL;
-
-```
-### 3. Data Analysis & Findings
-
-The following SQL queries were developed to answer specific business questions:
-
-```sql
--- Sales Data Exploration
-
--- Total Line items listed.
-select Count(*) as Total_lineitems from sales_transactions ;
-
--- Total Unique Transactions Occured.
-SELECT COUNT(DISTINCT(transaction_id)) as Total_transactions from sales_transactions ;
-
--- Total Unique Category. 
-SELECT COUNT(DISTINCT(category)) as Total_Category from sales_transactions ; 
-
--- Total Products listed.
-SELECT COUNT(DISTINCT(Product_name)) as Total_Products from sales_transactions ; 
-
--- Total Net Revenue.
-select sum(net_amount) as total_net_revenue from sales_transactions;
-
--- Average Transaction value.
-select avg(net_amount) as Average_net_revenue from sales_transactions;
+DELETE from sales_transactions
+WHERE line_item_id IS NULL OR transaction_id IS NULL OR sale_date IS NULL
+   OR customer_id IS NULL OR loyalty_member IS NULL OR cashier_id IS NULL;
+   OR product_id IS NULL OR product_name IS NULL OR payment_method IS NULL
+   OR category IS NULL OR brand IS NULL OR net_amount IS NULL 
+   OR unit_price IS NULL OR quantity IS NULL OR discount_applied IS NULL
+   OR line_total IS NULL 
 ```
 
 
