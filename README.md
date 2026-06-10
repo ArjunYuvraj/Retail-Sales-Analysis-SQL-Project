@@ -151,7 +151,8 @@ GROUP BY cashier_id;
 
 ## **Report**
 This repository also includes a detailed and well-documented report with deeper insights and explanations.
-[📄 View Full Report(./Retail Sales Analysis Report.pdf)]
+
+👉 [View Full Report](./Retail_Sales_Analysis_Report.pdf)
 
 I’ve attached screenshots of the report for quick reference—feel free to check them out for a better understanding of the analysis and findings.
 
