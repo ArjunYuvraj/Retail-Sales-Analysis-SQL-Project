@@ -74,5 +74,101 @@ WHERE line_item_id IS NULL OR transaction_id IS NULL OR sale_date IS NULL
    OR unit_price IS NULL OR quantity IS NULL OR discount_applied IS NULL
    OR line_total IS NULL 
 ```
+### Sales Data Analysis And findings
+This analysis derives actionable insights from retail sales data by evaluating revenue trends, identifying top-performing products, and assessing category-level performance.
+
+1.**Monthly Revenue Analysis**: Calculates total revenue for each month to identify sales trends over time.
+```sql
+SELECT 
+    TO_CHAR(sale_date, 'Month') AS month_name,
+    SUM(net_amount) AS total_sales
+FROM sales_transactions
+GROUP BY month_name
+ORDER BY MIN(sale_date);
+```
+2.**Categorical Performance**: Analyzes revenue contribution by product category, including total sales, units sold, and percentage share.
+```sql
+SELECT 
+    category,
+	COUNT(line_item_id) as units_sold,
+    ROUND(COUNT(line_item_id) * 100.0 / SUM(COUNT(line_item_id)) OVER (), 2) || '%' AS percentage_share
+FROM sales_transactions
+GROUP BY category
+ORDER BY Units_sold DESC;
+```
+3.**Top Products by Revenue**: Identifies the top 10 products generating the highest revenue.
+```sql
+SELECT product_name,SUM(net_amount) AS revenue 
+FROM sales_transactions
+GROUP BY product_name
+ORDER BY revenue DESC
+LIMIT 10;
+```
+### Transaction & Basket Analysis
+4.**Average Transaction Value (ATV)**: Measures the average revenue generated per transaction.
+```sql
+SELECT 
+    SUM(net_amount) AS total_revenue,
+    COUNT(DISTINCT transaction_id) AS total_transactions,
+    ROUND(SUM(net_amount)*1.0/COUNT(DISTINCT transaction_id),2) AS avg_transaction_value
+FROM sales_transactions;
+```
+5.**Average Basket Size**: Calculates the average number of items purchased per transaction.
+```sql
+SELECT 
+	SUM(quantity) AS total_item_sold,
+	COUNT(DISTINCT transaction_id) AS total_transactions,
+	round(SUM(quantity)*1.0/COUNT(DISTINCT(transaction_id)),1) AS avg_basket_size 
+FROM sales_transactions;
+```
+6.**Payment Method Distribution**: Shows how different payment methods contribute to total transactions and revenue.
+```SQL
+SELECT 
+  payment_method, 
+  COUNT(line_item_id) AS usage, 
+  SUM(net_amount) AS total_revenue, 
+  ROUND(SUM(net_amount)* 100.0/SUM(SUM(net_amount)) OVE(),2) || '%' AS Usage_Percentage 
+FROM sales_transactions 
+GROUP BY payment_method 
+order by usage desc;
+```
+7.**Cashier & Operations**: Evaluates cashier performance based on the number of items processed and their contribution percentage.
+```sql
+SELECT
+  cashier_id,
+  COUNT(line_item_id) AS Units_processed,
+  ROUND(COUNT(line_item_id)*100.0/SUM(COUNT(line_item_id)) OVER (),2) || '%' AS Units_Processed_Percentage
+FROM sales_transactions
+GROUP BY cashier_id;
+```
+## Findings
+
+- **Revenue Insights:** Identified top-performing product categories contributing the highest share of total sales.
+- **Sales Trends:** Analyzed monthly revenue patterns to highlight peak periods and seasonal demand.
+- **Customer Behavior:** Evaluated average transaction value and basket size to understand purchasing habits.
+- **Operational Efficiency:** Assessed payment methods and cashier performance to optimize transaction flow.
+- **Data Quality:** Utilized a clean, complete dataset to ensure accurate and reliable analysis..
+
+## **Report**
+This repository also includes a detailed and well-documented report with deeper insights and explanations.
+
+I’ve attached screenshots of the report for quick reference—feel free to check them out for a better understanding of the analysis and findings.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ad642fa5-498e-4651-bebb-695ffab3c230" width="750" height="425"><br>
+  <em>Dataset Overview Snapshot</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d1b8c111-57f7-4cca-9cbd-e4ad2d26d23a" width="750" height="425"><br>
+  <em>Monthly Revenue Trend Snapshot</em>
+</p>
+
+<!-- <img width="934" height="506" alt="image" src="https://github.com/user-attachments/assets/f37ac6c3-9d70-4ef0-b988-31f4cf3cc151" /> -->
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f37ac6c3-9d70-4ef0-b988-31f4cf3cc151" width="750" height="425"><br>
+  <em>Category Performance Snapshot</em>
+</p>
 
 
