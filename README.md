@@ -151,6 +151,7 @@ GROUP BY cashier_id;
 
 ## **Report**
 This repository also includes a detailed and well-documented report with deeper insights and explanations.
+[📄 View Full Report(./Retail Sales Analysis Report.pdf)]
 
 I’ve attached screenshots of the report for quick reference—feel free to check them out for a better understanding of the analysis and findings.
 
@@ -164,7 +165,6 @@ I’ve attached screenshots of the report for quick reference—feel free to che
   <em>Monthly Revenue Trend Snapshot</em>
 </p>
 
-<!-- <img width="934" height="506" alt="image" src="https://github.com/user-attachments/assets/f37ac6c3-9d70-4ef0-b988-31f4cf3cc151" /> -->
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/f37ac6c3-9d70-4ef0-b988-31f4cf3cc151" width="750" height="425"><br>
