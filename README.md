@@ -172,4 +172,14 @@ I’ve attached screenshots of the report for quick reference—feel free to che
   <em>Category Performance Snapshot</em>
 </p>
 
+## 📌 Using This Dataset
+
+If you would like to use this dataset and project for your own learning or analysis, feel free to do so. Kindly follow the steps below:
+
+## How to Use
+
+1. **Clone the Repository**: Clone this project repository from GitHub.
+2. **Set Up the Database**: Run the SQL scripts provided in the `Retail_Sales_Analysis.sql` file to create and populate the database.
+3. **Run the Queries**: Use the SQL queries provided in the `Retail_Sales_Analysis.sql` file to perform your analysis.
+4. **Explore and Modify**: Feel free to modify the queries to explore different aspects of the dataset or answer additional business questions.
 
