@@ -157,7 +157,7 @@ This repository also includes a detailed and well-documented report with deeper 
 I’ve attached screenshots of the report for quick reference—feel free to check them out for a better understanding of the analysis and findings.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ad642fa5-498e-4651-bebb-695ffab3c230" width="750" height="425"><br>
+  <img src="https://github.com/user-attachments/assets/d8ca54f3-3198-46a8-850f-b63a7ec5ba4c" width="750" height="425"><br>
   <em>Dataset Overview Snapshot</em>
 </p>
 
